@@ -1,0 +1,68 @@
+class Solution(object):
+    global check_palindrome;
+    def check_palindrome(s):
+        # returns string yes or no
+        
+        if s==s[::-1]:
+            return "yes";
+        else:
+            return "no";
+    
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        
+        start=0;
+        maximum=0;
+        previous="";
+        current="";
+        dict={};
+        
+        if len(s)==0:
+            return "";
+        if len(s)==1:
+            return s;
+        
+        for i in range(len(s)):
+            if s[i] not in dict:
+                dict[s[i]]=i;
+            #print "i:",i
+            start=i+1;
+           # print "start:",start
+            
+            while (start < len(s)):
+              #  print s[i],s[start];
+                if(s[i]==s[start]):
+                    #if(s[i]==s[start+1] and s[start+1]< len(s)):
+                        
+                    break;
+                
+                else:
+                    start+=1;
+            #print "check:",s[i:start+1]
+            if check_palindrome(s[i:start+1])=="yes":
+                #print "here"
+                current=s[i:start+1];
+                #print "current:",current
+                #print "previous:",previous
+                length=len(current);
+                maximum=len(previous);
+                
+                if (maximum<=length):
+                    maximum=length;
+                    #print i;                    
+                    previous=s[i:i+maximum];
+                   # print "previous",previous;
+                   # print "maximum:",maximum
+                else:
+                    if(length>=maximum):
+                        previous=current;
+            #print "previous",previous;
+            #print "current:",current
+        
+       
+        return previous;
+        
+    
